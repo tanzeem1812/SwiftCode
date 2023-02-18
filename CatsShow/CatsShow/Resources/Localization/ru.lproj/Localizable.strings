@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  CatsShow
+
+  Created by Tanzeem Ahamad 
+  
+*/
+
+"next" = "Следующий";
+"error" = "Ошибка";
+"Ok" = "хорошо";
+"cat" = "Кот";
+"fact" = "Факт";
+"something_wrong" = "Упс, что-то пошло не так!";
