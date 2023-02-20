@@ -23,6 +23,7 @@ class CatsShowViewModel{
     }
     
     func fetchCatImageRequestUsingCache(completion: ((Result<URL,ErrorCodes>)->Void)? = nil) {
+        // This function is based on King Fisher Library
         var fetchResult : Result<URL, ErrorCodes>?
         let urlStr = CatUtility.randomNumberForCatImageURLString(from:1,to:16)
         if urlStr.isValidURL{
@@ -38,6 +39,7 @@ class CatsShowViewModel{
     }
 
     func fetchCachedCatImageRequest(completion:((Data?, Error?)->Void)? = nil){
+        //This function does not use any 3rd party library for caching
         let (imageStr,number) = CatUtility.randomNumberAndCatImageURLString(from: 1, to: 16)
         let url = URL(string: imageStr)!
         
