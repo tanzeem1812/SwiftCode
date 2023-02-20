@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let apiService:APIServiceProtocol = APIService()
         let viewModel = CatsShowViewModel() // you can directly assign both API services in this initializer
         viewModel.apiService = apiService
+        viewModel.cachedImageAPIService = CachedImageAPIService()
         window?.rootViewController = CatsShowViewController(viewModel: viewModel)
         window?.makeKeyAndVisible()
 

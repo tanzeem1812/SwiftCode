@@ -15,11 +15,11 @@ class CatsShowViewModel{
     weak var catDataOutput: CatsShowViewModelFactDataOutput?
     
     var apiService:APIServiceProtocol?
-    var cachedImageapiService:CachedImageAPIService?
+    var cachedImageAPIService:CachedImageAPIService?
     
     init(apiService:APIServiceProtocol? = nil){
         self.apiService = apiService
-        self.cachedImageapiService = CachedImageAPIService()
+        self.cachedImageAPIService = CachedImageAPIService()
     }
     
     func fetchCatImageRequestUsingCache(completion: ((Result<URL,ErrorCodes>)->Void)? = nil) {
@@ -51,7 +51,7 @@ class CatsShowViewModel{
         
         
         // If the image does not exist in the cache, download the image to the cache
-        cachedImageapiService?.fetchRequest(url: url, number:number, toFile: filePath) { (error) in
+        cachedImageAPIService?.fetchRequest(url: url, number:number, toFile: filePath) { (error) in
             let data = try? Data(contentsOf: filePath)
             completion?(data, error)
         }
