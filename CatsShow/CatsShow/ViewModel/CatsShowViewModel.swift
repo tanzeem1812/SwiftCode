@@ -25,7 +25,7 @@ class CatsShowViewModel{
     func fetchCatImageRequestUsingCache(completion: ((Result<URL,ErrorCodes>)->Void)? = nil) {
         // This function is based on King Fisher Library
         var fetchResult : Result<URL, ErrorCodes>?
-        let urlStr = CatUtility.randomNumberForCatImageURLString(from:1,to:16)
+        let (urlStr,_) = CatUtility.randomNumberAndCatImageURLString(from:1,to:16)
         if urlStr.isValidURL{
             let imageUrl = URL(string: urlStr)
             //catImageUrlOutput?.updateImageViewFromURL(catImageUrl:imageUrl!)

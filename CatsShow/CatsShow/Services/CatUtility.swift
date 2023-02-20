@@ -8,12 +8,6 @@ import Foundation
 
 struct CatUtility{
 
-    static func randomNumberForCatImageURLString(from:Int,to:Int)->String{
-        let randomNumber = Int.random(in: from..<to)
-        let baseUrlStr = Constants.catImagesBaseUrl_random
-        let urlStr = "\(baseUrlStr)?image=\(randomNumber)"
-        return urlStr
-    }
   
     static func randomNumberAndCatImageURLString(from:Int,to:Int)->(String,Int){
         let randomNumber = Int.random(in: from..<to+1)
