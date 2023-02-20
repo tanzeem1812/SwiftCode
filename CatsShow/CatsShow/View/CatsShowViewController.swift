@@ -59,9 +59,6 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
         fetchCachedCatImageRequest()
     }
     
-  
-   
-
     
     func fetchCachedCatImageRequest(){ // Image Caching without using any 3rd Party Library
         viewModel?.fetchCachedCatImageRequest{ [weak self] (data, error) in
