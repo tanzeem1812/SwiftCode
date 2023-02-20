@@ -15,9 +15,11 @@ class CatsShowViewModel{
     weak var catDataOutput: CatsShowViewModelFactDataOutput?
     
     var apiService:APIServiceProtocol?
+    var cachedImageapiService:CachedImageAPIService?
     
     init(apiService:APIServiceProtocol? = nil){
         self.apiService = apiService
+        self.cachedImageapiService = CachedImageAPIService()
     }
     
     func fetchCatImageRequestUsingCache(completion: ((Result<URL,ErrorCodes>)->Void)? = nil) {
@@ -35,6 +37,27 @@ class CatsShowViewModel{
         completion?(fetchResult!)
     }
 
+    func fetchCachedCatImageRequest(completion:((Data?, Error?)->Void)? = nil){
+        let (imageStr,number) = CatUtility.randomNumberAndCatImageURLString(from: 1, to: 16)
+        let url = URL(string: imageStr)!
+        
+        
+        let filePath = CatUtility.getCacheImageFilePath(num:number)
+        if let data = try? Data(contentsOf: filePath) {
+            print("File already exist :\(filePath.path)")
+            completion?(data, nil)
+            return
+        }
+        
+        
+        // If the image does not exist in the cache, download the image to the cache
+        cachedImageapiService?.fetchRequest(url: url, number:number, toFile: filePath) { (error) in
+            let data = try? Data(contentsOf: filePath)
+            completion?(data, error)
+        }
+    }
+    
+    
     func fetchCatImageRequest(completion: ((Result<UIImage,ErrorCodes>)->Void)? = nil){
         var fetchResult : Result<UIImage, ErrorCodes>?
         let urlStr = Constants.catImagesBaseUrl

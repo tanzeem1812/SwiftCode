@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E02A098429A15C04009125A4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E02A098329A15C04009125A4 /* README.txt */; };
 		E02A098629A15CB1009125A4 /* Licence.txt in Resources */ = {isa = PBXBuildFile; fileRef = E02A098529A15CB1009125A4 /* Licence.txt */; };
+		E02AD38329A35147007AA87A /* CachedImageAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02AD38229A35147007AA87A /* CachedImageAPIService.swift */; };
 		E0F092F229A07D2E004A9DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F092F129A07D2E004A9DB3 /* AppDelegate.swift */; };
 		E0F092F429A07D2E004A9DB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F092F329A07D2E004A9DB3 /* SceneDelegate.swift */; };
 		E0F092F629A07D2E004A9DB3 /* CatsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F092F529A07D2E004A9DB3 /* CatsShowViewController.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		E02A098329A15C04009125A4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = SOURCE_ROOT; };
 		E02A098529A15CB1009125A4 /* Licence.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Licence.txt; sourceTree = "<group>"; };
+		E02AD38229A35147007AA87A /* CachedImageAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedImageAPIService.swift; sourceTree = "<group>"; };
 		E0F092EE29A07D2E004A9DB3 /* CatsShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatsShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0F092F129A07D2E004A9DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0F092F329A07D2E004A9DB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				E0F0932529A07DA2004A9DB3 /* CatUtility.swift */,
+				E02AD38229A35147007AA87A /* CachedImageAPIService.swift */,
 				E0F0933529A07F89004A9DB3 /* APIService.swift */,
 			);
 			path = Services;
@@ -444,6 +447,7 @@
 				E0F0933329A07F80004A9DB3 /* Protocols.swift in Sources */,
 				E0F092F229A07D2E004A9DB3 /* AppDelegate.swift in Sources */,
 				E0F092F429A07D2E004A9DB3 /* SceneDelegate.swift in Sources */,
+				E02AD38329A35147007AA87A /* CachedImageAPIService.swift in Sources */,
 				E0F0932829A07DAB004A9DB3 /* CatViews.swift in Sources */,
 				E0F0933729A07F89004A9DB3 /* APIService.swift in Sources */,
 				E0F0933129A07F63004A9DB3 /* Constants.swift in Sources */,

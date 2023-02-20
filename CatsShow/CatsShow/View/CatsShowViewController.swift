@@ -34,7 +34,8 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
         setupAndConfigureViews()
         fetchCatData()
         fetchCatImageRequest() // it does not support caching hence fetching will be slow
-        fetchCatImageRequestUsingCache() // fetching of image must be very fast in second attempt due to the caching
+        //fetchCatImageRequestUsingCache() // fetching of image must be very fast in second attempt due to the caching using KingFisher Libraty
+        fetchCachedCatImageRequest()// fetching of image must be very fast in second attempt due to the caching without usingn KingFisher Library
     }
     
     func setupAndConfigureViews(){
@@ -54,46 +55,26 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
     @objc func nextButtonPressed() {
         fetchCatData()
         fetchCatImageRequest()
-        fetchCatImageRequestUsingCache()
+        //fetchCatImageRequestUsingCache()
+        fetchCachedCatImageRequest()
     }
     
-    func configureAndAddCatFactLabel(){
-        let localizedCatFactStr = NSLocalizedString("cat", comment: "") + " " + NSLocalizedString("fact", comment: "")
-        catFactLabel.text = localizedCatFactStr
-        catFactLabel.frame = CGRect(x: Int(self.view.center.x) - 100/2,
-                                 y: 55,
-                                 width:  100,
-                                 height: 40)
-        view.addSubview(catFactLabel)
+  
+   
+
+    
+    func fetchCachedCatImageRequest(){
+        viewModel?.fetchCachedCatImageRequest{ [weak self] (data, error) in
+            if error != nil{
+                print("Error")
+                return
+            }
+            DispatchQueue.main.async {
+                self?.catImageViewCached.image = UIImage(data: data!)
+            }
+        }
     }
     
-    func configureAndAddFactTextView(){
-        catFactTextView.frame = CGRect(x:45, y: catFactLabel.frame.maxY+5, width: 350, height: 100.0)
-        view.addSubview(catFactTextView)
-    }
-    
-    func configureAndAddFactImageView(){
-        catImageView.frame = CGRect(x: catFactTextView.frame.minX, y: catFactTextView.frame.maxY+10, width: catFactTextView.frame.width, height: 280)
-        view.addSubview(catImageView)
-    }
-    
-    func  configureAndAddImageCachedView(){
-        catImageViewCached.frame = CGRect(x: catFactTextView.frame.minX, y: catImageView.frame.maxY+10, width: catFactTextView.frame.width, height: catImageView.frame.height)
-        catImageViewCached.kf.indicatorType = .activity
-        view.addSubview(catImageViewCached)
-    }
-    
-    func  configureAndAddNextButton(){
-        let nextButton = UIButton()
-         nextButton.setTitle(NSLocalizedString("next", comment: "") + " " + NSLocalizedString("cat", comment: ""), for: .normal)
-        nextButton.setTitleColor(.blue, for: .normal)
-        nextButton.frame = CGRect(x: Int(self.view.center.x) - 100/2,
-                                  y: Int(catImageViewCached.frame.maxY+5),
-                                  width:  100,
-                                  height: Int(catFactLabel.frame.height))
-        nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
-        view.addSubview(nextButton)
-    }
     
     func fetchCatImageRequest(){
         viewModel?.fetchCatImageRequest(){ [weak self] result in
@@ -191,6 +172,44 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
             alert.addAction(UIAlertAction(title: nsLocalizedOKStr, style: .default, handler: nil))
             self.present(alert,animated:true,completion: nil)
         }
+    }
+    
+    func configureAndAddCatFactLabel(){
+        let localizedCatFactStr = NSLocalizedString("cat", comment: "") + " " + NSLocalizedString("fact", comment: "")
+        catFactLabel.text = localizedCatFactStr
+        catFactLabel.frame = CGRect(x: Int(self.view.center.x) - 100/2,
+                                 y: 55,
+                                 width:  100,
+                                 height: 40)
+        view.addSubview(catFactLabel)
+    }
+    
+    func configureAndAddFactTextView(){
+        catFactTextView.frame = CGRect(x:45, y: catFactLabel.frame.maxY+5, width: 350, height: 100.0)
+        view.addSubview(catFactTextView)
+    }
+    
+    func configureAndAddFactImageView(){
+        catImageView.frame = CGRect(x: catFactTextView.frame.minX, y: catFactTextView.frame.maxY+10, width: catFactTextView.frame.width, height: 280)
+        view.addSubview(catImageView)
+    }
+    
+    func  configureAndAddImageCachedView(){
+        catImageViewCached.frame = CGRect(x: catFactTextView.frame.minX, y: catImageView.frame.maxY+10, width: catFactTextView.frame.width, height: catImageView.frame.height)
+        catImageViewCached.kf.indicatorType = .activity
+        view.addSubview(catImageViewCached)
+    }
+    
+    func  configureAndAddNextButton(){
+        let nextButton = UIButton()
+         nextButton.setTitle(NSLocalizedString("next", comment: "") + " " + NSLocalizedString("cat", comment: ""), for: .normal)
+        nextButton.setTitleColor(.blue, for: .normal)
+        nextButton.frame = CGRect(x: Int(self.view.center.x) - 100/2,
+                                  y: Int(catImageViewCached.frame.maxY+5),
+                                  width:  100,
+                                  height: Int(catFactLabel.frame.height))
+        nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+        view.addSubview(nextButton)
     }
 }
 
