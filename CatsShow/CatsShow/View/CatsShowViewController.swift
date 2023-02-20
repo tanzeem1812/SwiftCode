@@ -63,7 +63,7 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
    
 
     
-    func fetchCachedCatImageRequest(){
+    func fetchCachedCatImageRequest(){ // Image Caching without using any 3rd Party Library
         viewModel?.fetchCachedCatImageRequest{ [weak self] (data, error) in
             if error != nil{
                 print("Error")
@@ -76,7 +76,7 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
     }
     
     
-    func fetchCatImageRequest(){
+    func fetchCatImageRequest(){ // No Image Caching
         viewModel?.fetchCatImageRequest(){ [weak self] result in
             switch result {
             case .success(let data):
@@ -89,7 +89,7 @@ class CatsShowViewController: UIViewController, CatsShowViewModelImageURLOutput,
         }
     }
     
-    func fetchCatImageRequestUsingCache(){
+    func fetchCatImageRequestUsingCache(){ // Image caching using KingFisher Library
         viewModel?.fetchCatImageRequestUsingCache(){ [weak self] result in
             switch result {
             case .success(let url):
