@@ -17,9 +17,9 @@ class CatsShowViewModel{
     var apiService:APIServiceProtocol?
     var cachedImageAPIService:CachedImageAPIService?
     
-    init(apiService:APIServiceProtocol? = nil){
+    init(apiService:APIServiceProtocol? = nil,cachedImageAPIService:CachedImageAPIService? = nil){
         self.apiService = apiService
-        self.cachedImageAPIService = CachedImageAPIService()
+        self.cachedImageAPIService = cachedImageAPIService
     }
     
     func fetchCatImageRequestUsingCache(completion: ((Result<URL,ErrorCodes>)->Void)? = nil) {
