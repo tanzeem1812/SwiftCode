@@ -3,9 +3,10 @@ This code is based on MVVM architecture and support followings:
 
 . Localization
 . Development and Production Schemes
+. Dependency Injections
 . Caching of the images using Kingfisher Image Library
 . Caching of the images without using 3rd Party Image Library
-. Few Unit Test Cases 
+. Few Unit Test Cases for asynchronous API calls 
 
 
 How to compile : 
